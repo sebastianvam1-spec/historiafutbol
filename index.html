@@ -7,7 +7,7 @@
 <title>Historia del Fútbol</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,58 +19,93 @@
 }
 
 body{
-    background:#04120b;
-    color:white;
     font-family:'Poppins', sans-serif;
+    background:#020b05;
+    color:white;
     overflow-x:hidden;
 }
 
-/* FONDO */
+/* ===== FONDO ANIMADO ===== */
 
 body::before{
-    content:"";
+    content:'';
     position:fixed;
     width:100%;
     height:100%;
     background:
-    radial-gradient(circle at 20% 20%, rgba(0,255,100,.12), transparent 20%),
-    radial-gradient(circle at 80% 30%, rgba(255,255,255,.08), transparent 20%),
-    radial-gradient(circle at 50% 80%, rgba(0,255,150,.12), transparent 20%);
-    z-index:-1;
-    animation:fondo 8s infinite alternate;
+    radial-gradient(circle at 20% 20%, rgba(0,255,120,.15), transparent 20%),
+    radial-gradient(circle at 80% 40%, rgba(0,180,255,.12), transparent 20%),
+    radial-gradient(circle at 50% 80%, rgba(255,255,255,.08), transparent 20%);
+    z-index:-2;
+    animation:bgmove 12s infinite alternate;
 }
 
-@keyframes fondo{
+@keyframes bgmove{
     from{
         transform:scale(1);
     }
     to{
-        transform:scale(1.08);
+        transform:scale(1.15);
     }
 }
 
-/* NAVBAR */
+/* ===== PARTICULAS ===== */
+
+.particles{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#00ff88;
+    border-radius:50%;
+    box-shadow:0 0 10px #00ff88;
+    animation:animate 15s linear infinite;
+}
+
+@keyframes animate{
+    0%{
+        transform:translateY(100vh) scale(0);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-10vh) scale(1);
+        opacity:0;
+    }
+}
+
+/* ===== NAVBAR ===== */
 
 nav{
     position:fixed;
     width:100%;
     top:0;
     left:0;
+    padding:20px 8%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 8%;
-    background:rgba(0,0,0,.4);
-    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(15px);
     z-index:999;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
-    font-size:28px;
     font-family:'Orbitron', sans-serif;
+    font-size:30px;
     color:#00ff88;
     font-weight:900;
-    text-shadow:0 0 15px #00ff88;
+    text-shadow:0 0 20px #00ff88;
 }
 
 nav ul{
@@ -79,70 +114,104 @@ nav ul{
 }
 
 nav ul li{
-    margin-left:25px;
+    margin-left:30px;
 }
 
 nav ul li a{
     text-decoration:none;
     color:white;
-    transition:.3s;
     font-weight:500;
+    transition:.3s;
+    position:relative;
+}
+
+nav ul li a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0%;
+    height:2px;
+    background:#00ff88;
+    transition:.3s;
+}
+
+nav ul li a:hover::after{
+    width:100%;
 }
 
 nav ul li a:hover{
     color:#00ff88;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 
 .hero{
     height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:0 10%;
     background:
     linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)),
     url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2070&auto=format&fit=crop');
     background-size:cover;
     background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 10%;
+    position:relative;
+}
+
+.hero-content{
+    animation:fade 2s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
 .hero h1{
-    font-size:90px;
+    font-size:100px;
     font-family:'Orbitron', sans-serif;
+    line-height:1.1;
     text-shadow:0 0 30px #00ff88;
 }
 
-.hero span{
+.hero h1 span{
     color:#00ff88;
 }
 
 .hero p{
-    margin-top:25px;
-    font-size:22px;
+    margin-top:30px;
+    font-size:24px;
     color:#d1d5db;
 }
 
 .btn{
     display:inline-block;
-    margin-top:35px;
-    padding:15px 40px;
-    border-radius:50px;
-    background:linear-gradient(45deg,#00ff88,#00aa55);
+    margin-top:40px;
+    padding:18px 45px;
+    border-radius:60px;
+    background:linear-gradient(45deg,#00ff88,#00b35f);
     color:black;
-    text-decoration:none;
     font-weight:bold;
+    text-decoration:none;
     transition:.4s;
-    box-shadow:0 0 20px #00ff88;
+    box-shadow:0 0 25px #00ff88;
 }
 
 .btn:hover{
     transform:scale(1.1);
+    box-shadow:0 0 40px #00ff88;
 }
 
-/* SECCIONES */
+/* ===== SECCIONES ===== */
 
 section{
     padding:120px 10%;
@@ -150,14 +219,48 @@ section{
 
 .titulo{
     text-align:center;
-    font-size:50px;
-    color:#00ff88;
-    margin-bottom:70px;
+    font-size:55px;
+    margin-bottom:80px;
     font-family:'Orbitron', sans-serif;
+    color:#00ff88;
     text-shadow:0 0 20px #00ff88;
 }
 
-/* TIMELINE */
+/* ===== ESTADISTICAS ===== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:-80px;
+}
+
+.stat-box{
+    background:rgba(255,255,255,.05);
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.08);
+    transition:.4s;
+}
+
+.stat-box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px #00ff88;
+}
+
+.stat-box h2{
+    font-size:55px;
+    color:#00ff88;
+}
+
+.stat-box p{
+    margin-top:10px;
+    color:#cbd5e1;
+}
+
+/* ===== TIMELINE ===== */
 
 .timeline{
     position:relative;
@@ -194,26 +297,26 @@ section{
 .container::before{
     content:'';
     position:absolute;
-    width:25px;
-    height:25px;
+    width:28px;
+    height:28px;
     right:-17px;
     background:#00ff88;
     border-radius:50%;
-    top:35px;
+    top:30px;
     z-index:1;
     box-shadow:0 0 20px #00ff88;
 }
 
 .right::before{
-    left:-8px;
+    left:-11px;
 }
 
 .content{
     background:rgba(255,255,255,.05);
-    padding:30px;
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.1);
+    padding:35px;
+    border-radius:25px;
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.08);
     transition:.4s;
 }
 
@@ -225,84 +328,98 @@ section{
 .content h2{
     color:#00ff88;
     margin-bottom:15px;
+    font-size:28px;
 }
 
-/* CARDS */
+/* ===== CARDS ===== */
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
 }
 
 .card{
     background:rgba(255,255,255,.05);
-    border-radius:25px;
+    border-radius:30px;
     overflow:hidden;
-    backdrop-filter:blur(10px);
     transition:.4s;
-    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.03);
-    box-shadow:0 0 25px #00ff88;
+    transform:translateY(-15px) scale(1.03);
+    box-shadow:0 0 30px #00ff88;
 }
 
 .card img{
     width:100%;
-    height:250px;
+    height:350px;
     object-fit:cover;
 }
 
 .card-content{
-    padding:25px;
+    padding:30px;
 }
 
 .card-content h3{
     color:#00ff88;
     margin-bottom:15px;
+    font-size:28px;
 }
 
-/* GALERIA */
+/* ===== GALERIA ===== */
 
 .galeria{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
 .galeria img{
     width:100%;
-    height:300px;
+    height:320px;
     object-fit:cover;
-    border-radius:20px;
-    transition:.4s;
+    border-radius:25px;
+    transition:.5s;
 }
 
 .galeria img:hover{
     transform:scale(1.05);
-    box-shadow:0 0 25px #00ff88;
+    box-shadow:0 0 30px #00ff88;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 
 footer{
-    padding:40px;
-    background:#020617;
+    background:#010b06;
+    padding:50px;
     text-align:center;
+    margin-top:100px;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+footer h2{
+    color:#00ff88;
+    margin-bottom:15px;
+    font-family:'Orbitron', sans-serif;
 }
 
 footer p{
     color:#94a3b8;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 
 @media(max-width:900px){
 
 .hero h1{
     font-size:55px;
+}
+
+.hero p{
+    font-size:18px;
 }
 
 .timeline::after{
@@ -323,18 +440,37 @@ footer p{
     left:15px;
 }
 
+nav ul{
+    display:none;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
+
+<!-- PARTICULAS -->
+
+<div class="particles">
+<span style="left:10%; animation-delay:0s;"></span>
+<span style="left:20%; animation-delay:2s;"></span>
+<span style="left:30%; animation-delay:4s;"></span>
+<span style="left:40%; animation-delay:1s;"></span>
+<span style="left:50%; animation-delay:6s;"></span>
+<span style="left:60%; animation-delay:3s;"></span>
+<span style="left:70%; animation-delay:5s;"></span>
+<span style="left:80%; animation-delay:7s;"></span>
+<span style="left:90%; animation-delay:2s;"></span>
+</div>
 
 <!-- NAVBAR -->
 
 <nav>
 
-<div class="logo">FOOTBALL HISTORY</div>
+<div class="logo">FOOTBALL LEGACY</div>
 
 <ul>
 <li><a href="#inicio">Inicio</a></li>
@@ -349,12 +485,12 @@ footer p{
 
 <section class="hero" id="inicio">
 
-<div>
+<div class="hero-content">
 
 <h1>Historia del <span>Fútbol</span></h1>
 
 <p>
-Desde sus orígenes hasta convertirse en el deporte más popular del planeta ⚽
+El deporte más grande del planeta, desde sus inicios hasta la era moderna ⚽
 </p>
 
 <a href="#historia" class="btn">Explorar Historia</a>
@@ -363,7 +499,37 @@ Desde sus orígenes hasta convertirse en el deporte más popular del planeta ⚽
 
 </section>
 
-<!-- HISTORIA -->
+<!-- ESTADISTICAS -->
+
+<section>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2>1863</h2>
+<p>Nacimiento del fútbol moderno</p>
+</div>
+
+<div class="stat-box">
+<h2>211+</h2>
+<p>Países afiliados a FIFA</p>
+</div>
+
+<div class="stat-box">
+<h2>5B</h2>
+<p>Fanáticos alrededor del mundo</p>
+</div>
+
+<div class="stat-box">
+<h2>90'</h2>
+<p>Minutos de pasión total</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- TIMELINE -->
 
 <section id="historia">
 
@@ -373,9 +539,9 @@ Desde sus orígenes hasta convertirse en el deporte más popular del planeta ⚽
 
 <div class="container left">
 <div class="content">
-<h2>1863 - Nace el Fútbol Moderno</h2>
+<h2>1863 - El Comienzo</h2>
 <p>
-En Inglaterra se crearon las primeras reglas oficiales y nació la Football Association.
+En Inglaterra se fundó la Football Association y nacieron las primeras reglas oficiales.
 </p>
 </div>
 </div>
@@ -384,16 +550,16 @@ En Inglaterra se crearon las primeras reglas oficiales y nació la Football Asso
 <div class="content">
 <h2>1930 - Primer Mundial</h2>
 <p>
-Uruguay organizó la primera Copa Mundial de la FIFA y se coronó campeón.
+Uruguay organizó la primera Copa Mundial y se convirtió en el primer campeón.
 </p>
 </div>
 </div>
 
 <div class="container left">
 <div class="content">
-<h2>1958 - La Era de Pelé</h2>
+<h2>1958 - La Era Pelé</h2>
 <p>
-Pelé apareció como una estrella mundial y Brasil comenzó su dominio histórico.
+Brasil y Pelé revolucionaron el fútbol con talento, velocidad y espectáculo.
 </p>
 </div>
 </div>
@@ -402,25 +568,25 @@ Pelé apareció como una estrella mundial y Brasil comenzó su dominio históric
 <div class="content">
 <h2>1986 - Maradona</h2>
 <p>
-Diego Maradona lideró a Argentina y marcó uno de los mejores goles de la historia.
+Argentina ganó el Mundial con uno de los jugadores más legendarios de la historia.
 </p>
 </div>
 </div>
 
 <div class="container left">
 <div class="content">
-<h2>2009 - El Fútbol Total</h2>
+<h2>2009 - El Tiki Taka</h2>
 <p>
-El Barcelona de Guardiola revolucionó el juego con posesión y presión intensa.
+El Barcelona de Guardiola dominó el mundo con posesión y fútbol ofensivo.
 </p>
 </div>
 </div>
 
 <div class="container right">
 <div class="content">
-<h2>2026 - El Futuro</h2>
+<h2>2026 - Nueva Generación</h2>
 <p>
-Tecnología VAR, inteligencia artificial y estadios inteligentes transforman el fútbol moderno.
+VAR, inteligencia artificial y estadios inteligentes transforman el deporte.
 </p>
 </div>
 </div>
@@ -433,7 +599,7 @@ Tecnología VAR, inteligencia artificial y estadios inteligentes transforman el 
 
 <section id="leyendas">
 
-<h2 class="titulo">Leyendas del Fútbol</h2>
+<h2 class="titulo">Leyendas Eternas</h2>
 
 <div class="cards">
 
@@ -443,9 +609,11 @@ Tecnología VAR, inteligencia artificial y estadios inteligentes transforman el 
 
 <div class="card-content">
 <h3>Pelé</h3>
+
 <p>
-Considerado uno de los mejores futbolistas de todos los tiempos.
+Ganador de 3 Copas Mundiales y considerado uno de los mejores futbolistas de todos los tiempos.
 </p>
+
 </div>
 
 </div>
@@ -456,9 +624,11 @@ Considerado uno de los mejores futbolistas de todos los tiempos.
 
 <div class="card-content">
 <h3>Maradona</h3>
+
 <p>
-Ídolo argentino y campeón mundial en 1986.
+Ídolo argentino que dejó una huella eterna en la historia del fútbol mundial.
 </p>
+
 </div>
 
 </div>
@@ -469,9 +639,11 @@ Considerado uno de los mejores futbolistas de todos los tiempos.
 
 <div class="card-content">
 <h3>Messi & Cristiano</h3>
+
 <p>
-Dos jugadores que dominaron una generación histórica.
+Dos jugadores que dominaron el fútbol moderno durante más de una década.
 </p>
+
 </div>
 
 </div>
@@ -500,10 +672,14 @@ Dos jugadores que dominaron una generación histórica.
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
 
+<h2>⚽ FOOTBALL LEGACY</h2>
+
 <p>
-⚽ Historia del Fútbol | Diseño Futurista Deportivo 2026
+Historia del Fútbol • Diseño Premium Futurista • 2026
 </p>
 
 </footer>
