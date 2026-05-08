@@ -17,7 +17,7 @@ jobs:
         with:
           server: ftp-clasebraian.alwaysdata.net # Change if using another host
           username: clasebraian
-          password: clase1234
+          password: clase123
           server-dir: www/ # Replace with your correct path
           protocol: ftps
           timeout: 86400000
